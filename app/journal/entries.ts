@@ -24,4 +24,10 @@ export const entries: Entry[] = [
     title: "Day 3: Skills and custom slash commands",
     note: "I built my first Claude Code skill, a /journal-entry slash command that lives in .claude/skills/journal-entry/SKILL.md. I learned that the frontmatter controls how a skill behaves: disable-model-invocation means only I can trigger it, argument-hint documents what to pass, and allowed-tools limits it to reading, editing and running the build. The body can run shell commands like date and git log before Claude sees the prompt, so each entry starts from today's date and my recent commits. I also found out the hard way that $ARGUMENTS is empty if I invoke the command without a title, so I always pass one now.",
   },
+  {
+    day: 4,
+    date: "2026-10-22",
+    title: "Hooks: deterministic guardrails",
+    note: "I added hooks in .claude/settings.json so some rules run every time instead of depending on the model. A PreToolUse hook runs protect-files.sh and blocks edits to files like .env, a PostToolUse hook runs Prettier on every file Claude edits or writes, and a Notification hook pops up a macOS alert when Claude needs me. A hook that succeeds runs silently, and one that blocks sends its message back to Claude.",
+  },
 ];

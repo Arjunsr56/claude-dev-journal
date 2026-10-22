@@ -32,3 +32,4 @@ Journal entries live in [`app/journal/entries.ts`](app/journal/entries.ts).
 | 1   | 2026-10-16 | Claude models + Claude Code setup |
 | 2   | 2026-10-17 | CLAUDE.md memory files            |
 | 3   | 2026-10-18 | Skills and custom slash commands  |
+| 4   | 2026-10-22 | Hooks: deterministic guardrails   |

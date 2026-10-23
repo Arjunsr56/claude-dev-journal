@@ -27,9 +27,11 @@ Journal entries live in [`app/journal/entries.ts`](app/journal/entries.ts).
 
 ## Progress
 
-| Day | Date       | Topic                             |
-| --- | ---------- | --------------------------------- |
-| 1   | 2026-10-16 | Claude models + Claude Code setup |
-| 2   | 2026-10-17 | CLAUDE.md memory files            |
-| 3   | 2026-10-18 | Skills and custom slash commands  |
-| 4   | 2026-10-22 | Hooks: deterministic guardrails   |
+| Day | Date       | Topic                                   |
+| --- | ---------- | --------------------------------------- |
+| 1   | 2026-10-16 | Claude models + Claude Code setup       |
+| 2   | 2026-10-17 | CLAUDE.md memory files                  |
+| 3   | 2026-10-18 | Skills and custom slash commands        |
+| 4   | 2026-10-22 | Hooks: deterministic guardrails         |
+| 5   | 2026-10-22 | Subagents: a read-only code reviewer    |
+| 6   | 2026-10-23 | MCP servers, scopes and my first plugin |

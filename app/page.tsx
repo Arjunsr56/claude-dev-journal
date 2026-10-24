@@ -6,12 +6,20 @@ export default function Home() {
       <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">
         Hello world!
       </h1>
-      <Link
-        href="/journal"
-        className="mt-6 inline-block font-medium text-indigo-600 hover:text-indigo-800"
-      >
-        Read the journal →
-      </Link>
+      <div className="mt-6 flex flex-col items-start gap-2">
+        <Link
+          href="/journal"
+          className="inline-flex min-h-11 items-center font-medium text-indigo-600 hover:text-indigo-800"
+        >
+          Read the journal →
+        </Link>
+        <Link
+          href="/tracker"
+          className="inline-flex min-h-11 items-center font-medium text-indigo-600 hover:text-indigo-800"
+        >
+          Routine tracker →
+        </Link>
+      </div>
     </main>
   );
 }

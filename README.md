@@ -25,6 +25,8 @@ Then open [http://localhost:3000/journal](http://localhost:3000/journal).
 
 Journal entries live in [`app/journal/entries.ts`](app/journal/entries.ts).
 
+The routine tracker at [`/tracker`](http://localhost:3000/tracker) is a daily checklist for my scheduled Claude routines, defined in [`app/tracker/routines.ts`](app/tracker/routines.ts). Ticks are saved in the browser's `localStorage`, so they stay on the device you tick them on. A progress dashboard at [`/tracker/dashboard`](http://localhost:3000/tracker/dashboard) shows completion rates, streaks and an activity grid for each routine.
+
 ## Progress
 
 | Day | Date       | Topic                                   |

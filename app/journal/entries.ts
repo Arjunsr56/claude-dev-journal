@@ -42,4 +42,10 @@ export const entries: Entry[] = [
     title: "MCP servers, scopes and my first plugin",
     note: "I learned that MCP servers can be added at three scopes: local (just me, in this project), project (saved in `.mcp.json` and committed so everyone gets it), and user (available in all my projects). I connected the Playwright MCP server at project scope, which gave Claude a real browser to drive. I used it to audit this journal page at 375px, and it found a tiny tap target on the home link, a missing favicon and file paths that blended into the text, which I then fixed. I also installed my first plugin, `commit-commands` from `claude-plugins-official`, which bundles `/commit`, `/commit-push-pr` and `/clean_gone` into one install.",
   },
+  {
+    day: 7,
+    date: "2026-10-24",
+    title: "Headless mode and GitHub Actions",
+    note: "I learned that Claude Code can run without an interactive session: `claude -p \"prompt\"` runs headless, prints the result and exits, so I can use it in scripts and pipe the output to other tools. I also set it up in GitHub Actions with the Claude Code action, so mentioning `@claude` in an issue or PR starts a run on a CI runner that reads the repo and its `CLAUDE.md`. It works on its own branch, pushes commits and reports progress back in a single comment. The workflow authenticates with my Claude Pro subscription token, not an API key. Since nobody is there to approve prompts, I learned to keep the allowed tools tight.",
+  },
 ];

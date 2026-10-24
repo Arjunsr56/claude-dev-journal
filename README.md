@@ -37,3 +37,4 @@ The routine tracker at [`/tracker`](http://localhost:3000/tracker) is a daily ch
 | 4   | 2026-10-22 | Hooks: deterministic guardrails         |
 | 5   | 2026-10-22 | Subagents: a read-only code reviewer    |
 | 6   | 2026-10-23 | MCP servers, scopes and my first plugin |
+| 7   | 2026-10-24 | Headless mode and GitHub Actions        |

@@ -60,4 +60,10 @@ export const entries: Entry[] = [
     title: "Building my first MCP server",
     note: "I built my own MCP server called `journal` in `mcp-server/`, written in TypeScript with the `@modelcontextprotocol/server` SDK and `zod` for input schemas. It registers two tools with `registerTool`: `read_journal` returns the raw contents of `app/journal/entries.ts`, and `course_day` returns today's date in IST and how many days have passed since a start date, which defaults to `2026-10-15` but can be passed in. It talks over stdio through `serveStdio`, so Claude Code starts it as a local process, and its startup message goes to `console.error` because anything written to stdout would corrupt the protocol messages. I compile it with `tsc` into `build/` and connected it to Claude Code, then used its own tools to look up the course day and read the journal before writing this entry. The tool said Day 11 because it counts calendar days, while my journal counts the days I actually studied.",
   },
+  {
+    day: 10,
+    date: "2026-10-26",
+    title: "Messages API fundamentals (TypeScript SDK)",
+    note: "Day 10: Today I finally got hands-on with the Claude Messages API, and it clicked faster than I expected. I experimented with system prompts to shape Claude's tone and behavior, then tuned max_tokens to control response length and learned to check stop_reason to tell whether a reply finished naturally or got cut off. Next up: wiring these pieces into a small project so I can see them work together!",
+  },
 ];

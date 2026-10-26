@@ -66,4 +66,10 @@ export const entries: Entry[] = [
     title: "Messages API fundamentals (TypeScript SDK)",
     note: "Day 10: Today I finally got hands-on with the Claude Messages API, and it clicked faster than I expected. I experimented with system prompts to shape Claude's tone and behavior, then tuned max_tokens to control response length and learned to check stop_reason to tell whether a reply finished naturally or got cut off. Next up: wiring these pieces into a small project so I can see them work together!",
   },
+  {
+    day: 11,
+    date: "2026-10-26",
+    title: "Prompt engineering",
+    note: "I learned that Claude does best with clear, direct instructions, written as if for a smart new colleague who has no context on my project. Explaining why a rule exists helps more than stating it, because Claude can then apply the reason to cases I didn't think of. A few examples show the format and tone I want better than a description of them, and XML tags like `<instructions>`, `<example>` and `<code>` keep the parts of a prompt from blurring together and make the output easy to pull out with a script. I tested this in `prompts/` by asking for a review of the same buggy component twice. \"Review this code.\" got a 646-word review that found all nine bugs, while a structured prompt with a role, reasons, one example and `<review>` tags got a focused 197-word list of the three bugs that matter most to users. I also learned that prefilling the start of Claude's reply in an assistant message now returns a 400 error on newer models, so to control the format I use instructions, examples and XML tags instead.",
+  },
 ];

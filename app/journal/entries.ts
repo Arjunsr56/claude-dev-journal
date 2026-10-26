@@ -46,6 +46,12 @@ export const entries: Entry[] = [
     day: 7,
     date: "2026-10-24",
     title: "Headless mode and GitHub Actions",
-    note: "I learned that Claude Code can run without an interactive session: `claude -p \"prompt\"` runs headless, prints the result and exits, so I can use it in scripts and pipe the output to other tools. I also set it up in GitHub Actions with the Claude Code action, so mentioning `@claude` in an issue or PR starts a run on a CI runner that reads the repo and its `CLAUDE.md`. It works on its own branch, pushes commits and reports progress back in a single comment. The workflow authenticates with my Claude Pro subscription token, not an API key. Since nobody is there to approve prompts, I learned to keep the allowed tools tight.",
+    note: 'I learned that Claude Code can run without an interactive session: `claude -p "prompt"` runs headless, prints the result and exits, so I can use it in scripts and pipe the output to other tools. I also set it up in GitHub Actions with the Claude Code action, so mentioning `@claude` in an issue or PR starts a run on a CI runner that reads the repo and its `CLAUDE.md`. It works on its own branch, pushes commits and reports progress back in a single comment. The workflow authenticates with my Claude Pro subscription token, not an API key. Since nobody is there to approve prompts, I learned to keep the allowed tools tight.',
+  },
+  {
+    day: 8,
+    date: "2026-10-26",
+    title: "MCP concepts",
+    note: "I learned the three roles in MCP: the host is the app I'm using, like Claude Code, it runs one client per server, and each server is a program that provides capabilities over that client's connection. Servers offer tools, which are actions the model decides to call, resources, which are data the app reads by URI, and prompts, which are templates I pick myself as slash commands. I tried this with the `everything` demo server by calling its `echo` tool and reading resources, and found that a URI like `demo://resource/dynamic/blob/` is only a pattern that needs an index such as `/1` before it returns anything. Servers connect in one of two ways: with stdio the host starts the server as a local process and they talk over stdin and stdout, and with HTTP the server runs separately, often remotely, and receives requests over the network. The older HTTP+SSE transport is now deprecated.",
   },
 ];

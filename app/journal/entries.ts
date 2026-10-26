@@ -54,4 +54,10 @@ export const entries: Entry[] = [
     title: "MCP concepts",
     note: "I learned the three roles in MCP: the host is the app I'm using, like Claude Code, it runs one client per server, and each server is a program that provides capabilities over that client's connection. Servers offer tools, which are actions the model decides to call, resources, which are data the app reads by URI, and prompts, which are templates I pick myself as slash commands. I tried this with the `everything` demo server by calling its `echo` tool and reading resources, and found that a URI like `demo://resource/dynamic/blob/` is only a pattern that needs an index such as `/1` before it returns anything. Servers connect in one of two ways: with stdio the host starts the server as a local process and they talk over stdin and stdout, and with HTTP the server runs separately, often remotely, and receives requests over the network. The older HTTP+SSE transport is now deprecated.",
   },
+  {
+    day: 9,
+    date: "2026-10-26",
+    title: "Building my first MCP server",
+    note: "I built my own MCP server called `journal` in `mcp-server/`, written in TypeScript with the `@modelcontextprotocol/server` SDK and `zod` for input schemas. It registers two tools with `registerTool`: `read_journal` returns the raw contents of `app/journal/entries.ts`, and `course_day` returns today's date in IST and how many days have passed since a start date, which defaults to `2026-10-15` but can be passed in. It talks over stdio through `serveStdio`, so Claude Code starts it as a local process, and its startup message goes to `console.error` because anything written to stdout would corrupt the protocol messages. I compile it with `tsc` into `build/` and connected it to Claude Code, then used its own tools to look up the course day and read the journal before writing this entry. The tool said Day 11 because it counts calendar days, while my journal counts the days I actually studied.",
+  },
 ];

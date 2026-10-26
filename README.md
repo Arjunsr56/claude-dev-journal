@@ -39,3 +39,4 @@ The routine tracker at [`/tracker`](http://localhost:3000/tracker) is a daily ch
 | 6   | 2026-10-23 | MCP servers, scopes and my first plugin |
 | 7   | 2026-10-24 | Headless mode and GitHub Actions        |
 | 8   | 2026-10-26 | MCP concepts                            |
+| 9   | 2026-10-26 | Building my first MCP server            |

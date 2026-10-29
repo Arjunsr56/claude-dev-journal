@@ -72,4 +72,10 @@ export const entries: Entry[] = [
     title: "Prompt engineering",
     note: "I learned that Claude does best with clear, direct instructions, written as if for a smart new colleague who has no context on my project. Explaining why a rule exists helps more than stating it, because Claude can then apply the reason to cases I didn't think of. A few examples show the format and tone I want better than a description of them, and XML tags like `<instructions>`, `<example>` and `<code>` keep the parts of a prompt from blurring together and make the output easy to pull out with a script. I tested this in `prompts/` by asking for a review of the same buggy component twice. \"Review this code.\" got a 646-word review that found all nine bugs, while a structured prompt with a role, reasons, one example and `<review>` tags got a focused 197-word list of the three bugs that matter most to users. I also learned that prefilling the start of Claude's reply in an assistant message now returns a 400 error on newer models, so to control the format I use instructions, examples and XML tags instead.",
   },
+  {
+    day: 12,
+    date: "2026-10-29",
+    title: "Streaming Claude responses",
+    note: "I streamed Claude's replies into the site through a route handler at `app/api/ask/route.ts`. It calls `client.messages.stream()` and wraps the events in a `ReadableStream`, so text reaches the browser as it's generated instead of all at once when the reply is finished. A new `/ask` page reads the response with `getReader()` and a `TextDecoder` and appends each chunk to the answer as it arrives. I also learned the order of the server-sent events in a stream: `message_start`, then for each content block a `content_block_start`, a run of `content_block_delta` events and a `content_block_stop`, then `message_delta`, which carries the `stop_reason` and final usage, and finally `message_stop`. My route only forwards the `text_delta` deltas as plain text and skips everything else, and if the browser disconnects, its `cancel()` calls `stream.abort()` so the request to Claude stops too.",
+  },
 ];

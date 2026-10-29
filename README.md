@@ -42,3 +42,4 @@ The routine tracker at [`/tracker`](http://localhost:3000/tracker) is a daily ch
 | 9   | 2026-10-26 | Building my first MCP server               |
 | 10  | 2026-10-26 | Messages API fundamentals (TypeScript SDK) |
 | 11  | 2026-10-26 | Prompt engineering                         |
+| 12  | 2026-10-29 | Streaming Claude responses                 |

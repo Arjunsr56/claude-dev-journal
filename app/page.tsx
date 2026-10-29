@@ -19,6 +19,12 @@ export default function Home() {
         >
           Routine tracker →
         </Link>
+        <Link
+          href="/ask"
+          className="inline-flex min-h-11 items-center font-medium text-indigo-600 hover:text-indigo-800"
+        >
+          Ask →
+        </Link>
       </div>
     </main>
   );

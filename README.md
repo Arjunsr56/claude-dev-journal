@@ -1,5 +1,9 @@
 # Claude Dev Journal
 
+![The /ask page streaming Claude's answer into the page as it is generated](docs/ask-streaming.gif)
+
+Streams Claude responses token-by-token via a Next.js route handler (`ReadableStream`), with an abort-on-disconnect step that stops paying for tokens nobody reads.
+
 A day-by-day learning journal for my Claude developer course. Each entry records what I learned and built that day. The app itself was built with [Claude Code](https://claude.com/claude-code), Anthropic's agentic coding tool.
 
 ## Tech stack

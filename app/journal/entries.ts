@@ -46,6 +46,36 @@ export const entries: Entry[] = [
     day: 7,
     date: "2026-10-24",
     title: "Headless mode and GitHub Actions",
-    note: "I learned that Claude Code can run without an interactive session: `claude -p \"prompt\"` runs headless, prints the result and exits, so I can use it in scripts and pipe the output to other tools. I also set it up in GitHub Actions with the Claude Code action, so mentioning `@claude` in an issue or PR starts a run on a CI runner that reads the repo and its `CLAUDE.md`. It works on its own branch, pushes commits and reports progress back in a single comment. The workflow authenticates with my Claude Pro subscription token, not an API key. Since nobody is there to approve prompts, I learned to keep the allowed tools tight.",
+    note: 'I learned that Claude Code can run without an interactive session: `claude -p "prompt"` runs headless, prints the result and exits, so I can use it in scripts and pipe the output to other tools. I also set it up in GitHub Actions with the Claude Code action, so mentioning `@claude` in an issue or PR starts a run on a CI runner that reads the repo and its `CLAUDE.md`. It works on its own branch, pushes commits and reports progress back in a single comment. The workflow authenticates with my Claude Pro subscription token, not an API key. Since nobody is there to approve prompts, I learned to keep the allowed tools tight.',
+  },
+  {
+    day: 8,
+    date: "2026-10-26",
+    title: "MCP concepts",
+    note: "I learned the three roles in MCP: the host is the app I'm using, like Claude Code, it runs one client per server, and each server is a program that provides capabilities over that client's connection. Servers offer tools, which are actions the model decides to call, resources, which are data the app reads by URI, and prompts, which are templates I pick myself as slash commands. I tried this with the `everything` demo server by calling its `echo` tool and reading resources, and found that a URI like `demo://resource/dynamic/blob/` is only a pattern that needs an index such as `/1` before it returns anything. Servers connect in one of two ways: with stdio the host starts the server as a local process and they talk over stdin and stdout, and with HTTP the server runs separately, often remotely, and receives requests over the network. The older HTTP+SSE transport is now deprecated.",
+  },
+  {
+    day: 9,
+    date: "2026-10-26",
+    title: "Building my first MCP server",
+    note: "I built my own MCP server called `journal` in `mcp-server/`, written in TypeScript with the `@modelcontextprotocol/server` SDK and `zod` for input schemas. It registers two tools with `registerTool`: `read_journal` returns the raw contents of `app/journal/entries.ts`, and `course_day` returns today's date in IST and how many days have passed since a start date, which defaults to `2026-10-15` but can be passed in. It talks over stdio through `serveStdio`, so Claude Code starts it as a local process, and its startup message goes to `console.error` because anything written to stdout would corrupt the protocol messages. I compile it with `tsc` into `build/` and connected it to Claude Code, then used its own tools to look up the course day and read the journal before writing this entry. The tool said Day 11 because it counts calendar days, while my journal counts the days I actually studied.",
+  },
+  {
+    day: 10,
+    date: "2026-10-26",
+    title: "Messages API fundamentals (TypeScript SDK)",
+    note: "Day 10: Today I finally got hands-on with the Claude Messages API, and it clicked faster than I expected. I experimented with system prompts to shape Claude's tone and behavior, then tuned max_tokens to control response length and learned to check stop_reason to tell whether a reply finished naturally or got cut off. Next up: wiring these pieces into a small project so I can see them work together!",
+  },
+  {
+    day: 11,
+    date: "2026-10-26",
+    title: "Prompt engineering",
+    note: "I learned that Claude does best with clear, direct instructions, written as if for a smart new colleague who has no context on my project. Explaining why a rule exists helps more than stating it, because Claude can then apply the reason to cases I didn't think of. A few examples show the format and tone I want better than a description of them, and XML tags like `<instructions>`, `<example>` and `<code>` keep the parts of a prompt from blurring together and make the output easy to pull out with a script. I tested this in `prompts/` by asking for a review of the same buggy component twice. \"Review this code.\" got a 646-word review that found all nine bugs, while a structured prompt with a role, reasons, one example and `<review>` tags got a focused 197-word list of the three bugs that matter most to users. I also learned that prefilling the start of Claude's reply in an assistant message now returns a 400 error on newer models, so to control the format I use instructions, examples and XML tags instead.",
+  },
+  {
+    day: 12,
+    date: "2026-10-29",
+    title: "Streaming Claude responses",
+    note: "I streamed Claude's replies into the site through a route handler at `app/api/ask/route.ts`. It calls `client.messages.stream()` and wraps the events in a `ReadableStream`, so text reaches the browser as it's generated instead of all at once when the reply is finished. A new `/ask` page reads the response with `getReader()` and a `TextDecoder` and appends each chunk to the answer as it arrives. I also learned the order of the server-sent events in a stream: `message_start`, then for each content block a `content_block_start`, a run of `content_block_delta` events and a `content_block_stop`, then `message_delta`, which carries the `stop_reason` and final usage, and finally `message_stop`. My route only forwards the `text_delta` deltas as plain text and skips everything else, and if the browser disconnects, its `cancel()` calls `stream.abort()` so the request to Claude stops too.",
   },
 ];

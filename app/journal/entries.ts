@@ -78,4 +78,10 @@ export const entries: Entry[] = [
     title: "Streaming Claude responses",
     note: "I streamed Claude's replies into the site through a route handler at `app/api/ask/route.ts`. It calls `client.messages.stream()` and wraps the events in a `ReadableStream`, so text reaches the browser as it's generated instead of all at once when the reply is finished. A new `/ask` page reads the response with `getReader()` and a `TextDecoder` and appends each chunk to the answer as it arrives. I also learned the order of the server-sent events in a stream: `message_start`, then for each content block a `content_block_start`, a run of `content_block_delta` events and a `content_block_stop`, then `message_delta`, which carries the `stop_reason` and final usage, and finally `message_stop`. My route only forwards the `text_delta` deltas as plain text and skips everything else, and if the browser disconnects, its `cancel()` calls `stream.abort()` so the request to Claude stops too.",
   },
+  {
+    day: 13,
+    date: "2026-10-29",
+    title: "Tool use",
+    note: 'I built a tool-using agent loop over my journal in `scripts/ask-journal.mts`, which gives Claude two tools, `list_entries` and `get_entry`, each defined by a name, a description and a JSON Schema `input_schema`. Claude doesn\'t run the tools itself: when it wants one, the response comes back with `stop_reason: "tool_use"` and a `tool_use` block holding the tool name and input. My code runs the matching function, sends the output back in a `tool_result` block with the same `tool_use_id`, and calls the API again with the whole conversation, looping until `stop_reason` is something other than `tool_use`. If a tool throws, I return the error with `is_error: true` so Claude can recover instead of the script crashing. I also learned that tool descriptions steer behavior, since telling Claude to call `list_entries` first makes it find the relevant days before fetching their full text.',
+  },
 ];

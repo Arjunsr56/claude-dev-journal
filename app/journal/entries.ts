@@ -90,4 +90,10 @@ export const entries: Entry[] = [
     title: "Structured Outputs with Zod",
     note: "Today I learned how to use structured outputs with Zod, and the parse helper is genuinely neat because it turns model responses straight into typed data. I got caught out by the schema limits, though, since some constraints I expected to work simply aren't supported. Next time I'll check the supported schema features before designing the whole thing around them.",
   },
+  {
+    day: 15,
+    date: "2026-10-31",
+    title: "Vision & PDFs",
+    note: "I learned how to send files to Claude, using an `image` block for images and a `document` block for PDFs, each carrying the file as base64. The file block goes before the text block, so the prompt comes after the content it refers to. I also learned that images cost tokens by size, at roughly one token per ~28px patch. To try it out, I built a `/describe` page and an `app/api/describe/route.ts` route that accept an image or PDF of up to 5 MB and show a bulleted description with the input and output token counts.",
+  },
 ];

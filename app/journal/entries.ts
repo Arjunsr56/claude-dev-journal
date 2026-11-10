@@ -102,4 +102,10 @@ export const entries: Entry[] = [
     title: "Prompt caching",
     note: 'I tried prompt caching in `scripts/cache-demo.mts`, which puts three of the project\'s files in the system prompt with `cache_control: { type: "ephemeral" }` on that block and then asks Claude Haiku 5.5 two different questions. On call 1, `cache_creation_input_tokens` showed 4,772 tokens written to the cache, and on call 2 the same 4,772 came back as `cache_read_input_tokens`, which are billed at about a tenth of the normal input price, so that part of the input was roughly 10× cheaper. Caching is a prefix match, so the stable content has to come first and the question that changes goes after the breakpoint. A cached prefix also has a minimum length, 512 tokens on this model, and anything shorter just doesn\'t get cached, with no error. I also had to name the script `.mts`, because without `"type": "module"` in `package.json`, `tsx` treats a `.ts` file as CommonJS and the top-level `await` fails.',
   },
+  {
+    day: 17,
+    date: "2026-11-10",
+    title: "Adaptive thinking and effort",
+    note: 'I tried adaptive thinking in `scripts/think.mts`, which sends one meeting-scheduling puzzle to Claude Haiku 5.5 three times with `thinking: { type: "adaptive", display: "summarized" }` and `output_config.effort` set to `low`, `medium` and `high`. Low took 10,540 ms with 1,640 thinking tokens out of 2,198 output tokens, medium took 9,821 ms with 1,323 of 1,831, and high took 14,744 ms with 2,340 of 2,931. All three answered 8, and medium and high also pointed out that reading "A ends before C starts" strictly would make it 5. The surprise was that medium came out faster and cheaper than low on this run, so effort sets how much the model is willing to think rather than an exact budget, and high\'s roughly 40% extra thinking went into checking the ambiguity rather than changing the answer. I also had to bump `@anthropic-ai/sdk` to `^1.7.0` to get these params.',
+  },
 ];

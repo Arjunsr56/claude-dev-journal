@@ -50,3 +50,4 @@ The routine tracker at [`/tracker`](http://localhost:3000/tracker) is a daily ch
 | 13  | 2026-10-29 | Tool use                                   |
 | 14  | 2026-10-31 | Structured Outputs with Zod                |
 | 15  | 2026-10-31 | Vision & PDFs                              |
+| 16  | 2026-11-04 | Prompt caching                             |

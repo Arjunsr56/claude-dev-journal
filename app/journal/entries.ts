@@ -96,4 +96,10 @@ export const entries: Entry[] = [
     title: "Vision & PDFs",
     note: "I learned how to send files to Claude, using an `image` block for images and a `document` block for PDFs, each carrying the file as base64. The file block goes before the text block, so the prompt comes after the content it refers to. I also learned that images cost tokens by size, at roughly one token per ~28px patch. To try it out, I built a `/describe` page and an `app/api/describe/route.ts` route that accept an image or PDF of up to 5 MB and show a bulleted description with the input and output token counts.",
   },
+  {
+    day: 16,
+    date: "2026-11-04",
+    title: "Prompt caching",
+    note: 'I tried prompt caching in `scripts/cache-demo.mts`, which puts three of the project\'s files in the system prompt with `cache_control: { type: "ephemeral" }` on that block and then asks Claude Haiku 5.5 two different questions. On call 1, `cache_creation_input_tokens` showed 4,772 tokens written to the cache, and on call 2 the same 4,772 came back as `cache_read_input_tokens`, which are billed at about a tenth of the normal input price, so that part of the input was roughly 10× cheaper. Caching is a prefix match, so the stable content has to come first and the question that changes goes after the breakpoint. A cached prefix also has a minimum length, 512 tokens on this model, and anything shorter just doesn\'t get cached, with no error. I also had to name the script `.mts`, because without `"type": "module"` in `package.json`, `tsx` treats a `.ts` file as CommonJS and the top-level `await` fails.',
+  },
 ];

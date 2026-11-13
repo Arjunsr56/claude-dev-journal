@@ -52,3 +52,4 @@ The routine tracker at [`/tracker`](http://localhost:3000/tracker) is a daily ch
 | 15  | 2026-10-31 | Vision & PDFs                              |
 | 16  | 2026-11-04 | Prompt caching                             |
 | 17  | 2026-11-10 | Adaptive thinking and effort               |
+| 18  | 2026-11-13 | Token counting, rate limits and cost estimation |

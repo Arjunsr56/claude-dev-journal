@@ -114,4 +114,10 @@ export const entries: Entry[] = [
     title: "Token counting, rate limits and cost estimation",
     note: "I measured what a prompt costs both before and after the call in `scripts/cost.mts`. Before the call, `messages.countTokens` counted 37 input tokens for free, and pricing those with the full 300 `max_tokens` at Haiku 5.5's $0.10/M input and $0.50/M output gave a worst case of $0.000154. The real call used 37 input and 245 output tokens for $0.000126, and calling `.withResponse()` on it also exposed the HTTP headers, where `anthropic-ratelimit-requests-remaining` showed 999 and `anthropic-ratelimit-input-tokens-remaining` showed 500,000. I then added cost logging to `/ask`, which reads `usage` from `stream.finalMessage()` after the client's stream has closed and logs the token counts and cost on the server, so the response itself doesn't change.",
   },
+  {
+    day: 19,
+    date: "2026-11-14",
+    title: "Message Batches API",
+    note: "I used the Message Batches API in `scripts/batch-tag.mts` to ask Claude Haiku 5.5 for three tags for each of my 18 journal entries in a single batch, which costs 50% less than normal calls but runs asynchronously, so the script polls until the batch has ended. The results can come back in any order, so I gave each request a `custom_id` and matched results by that rather than by position. On the first run, 6 of the 18 results came back empty, and `scripts/batch-debug.mts` printed each result's `stop_reason`, content block types and `usage`, which showed adaptive thinking had used up the whole `max_tokens: 60` before any text was written. I raised `max_tokens` to 400 and added validation that flags any result with no tags along with its `stop_reason`, so a cut-off answer can't pass silently.",
+  },
 ];
